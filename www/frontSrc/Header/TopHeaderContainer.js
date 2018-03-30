@@ -11,6 +11,9 @@ const theme = createMuiTheme({
     secondary: { main: '#00bfb3' },
     error: { main: '#e00b3d' },
     warning: { main: '#ff9a13' },
+    unreachable: { main: '#818285' },
+    unknown: { main: '#bcbdc0' },
+    pending: { main: '#2AD1D4' },
   },
   font: {
     openSans: "'Open Sans', Arial, Tahoma, Helvetica, Sans-Serif"
@@ -20,7 +23,7 @@ const theme = createMuiTheme({
       root: {
         height: '18px',
         fontSize: '0.9rem',
-        font: "'Open Sans', Arial, Tahoma, Helvetica, Sans-Serif",
+        fontFamily: "'Open Sans', Arial, Tahoma, Helvetica, Sans-Serif",
         paddingTop: '8px',
         paddingBottom: '8px',
       },
@@ -30,6 +33,11 @@ const theme = createMuiTheme({
         padding: '14px'
       }
     },
+    MuiButton: {
+      root: {
+        fontFamily: "'Open Sans', Arial, Tahoma, Helvetica, Sans-Serif"
+      }
+    }
   }
 });
 
