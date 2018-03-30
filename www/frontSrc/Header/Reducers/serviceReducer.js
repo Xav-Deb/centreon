@@ -2,9 +2,9 @@ import {
   REQUEST_USER,
   REQUEST_USER_SUCCESS,
   REQUEST_USER_FAIL,
-} from '../Actions/UserActions'
+} from '../Actions/userActions'
 
-export default function authReducer (
+export default function userReducer (
   state = {
     data: {}
   },
@@ -16,7 +16,6 @@ export default function authReducer (
         ...state
       }
     case REQUEST_USER_SUCCESS:
-      console.log(action)
       return {
         ...state,
         data: action.data

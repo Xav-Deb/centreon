@@ -14,29 +14,28 @@ import Moment from 'moment'
 const styles = theme => ({
   profileRoot: {
     display: 'flex',
-    flexDirection: 'row-reverse'
+    flexDirection: 'row-reverse',
+    fontFamily: theme.font.openSans,
   },
   moment: {
     alignSelf: 'flex-start',
     margin: '10px 0px',
   },
   headerDate: {
-    fontSize: '1.5vw',
-    lineHeight: '16px',
-    margin: '2px 0',
+    fontSize: 14,
   },
   headerTime: {
-    fontSize: '2.5vw',
-    lineHeight: '20px',
+    fontSize: 35,
+    lineHeight: '28px',
   },
   avatarButton: {
-    alignSelf: 'flex-end',
-    margin: '6px 4px'
+    alignSelf: 'center',
+    margin: '0px 6px'
   },
   avatar: {
     backgroundColor: '#FDFEFE',
-    width: 36,
-    height: 36,
+    width: 38,
+    height: 38,
     display: 'inline-flex',
     verticalAlign: 'middle',
     color: '#24323E',
@@ -63,13 +62,15 @@ const styles = theme => ({
 })
 
 const UserProfile = ({
-    classes,
+  classes,
     open,
+    user,
+    initial,
     handleOpen,
     handleClose,
     anchorEl
   }) => (
-  <Grid item xs={3}>
+  <Grid item xs>
     <div className={classes.profileRoot}>
       <IconButton
         aria-haspopup="true"
@@ -77,11 +78,11 @@ const UserProfile = ({
         className={classes.avatarButton}
       >
         <Avatar className={classes.avatar}>
-          RI
+          {initial}
         </Avatar>
       </IconButton>
       <div className={classes.moment}>
-        <div className={classes.headerDate}> {Moment(new Date()).format('LL')} </div>
+        <div className={classes.headerDate}> {Moment().format('LL')} </div>
         <div className={classes.headerTime}> {Moment().format('LT')} </div>
       </div>
     </div>
@@ -102,10 +103,10 @@ const UserProfile = ({
     >
       <div className={classes.profile}>
         <Typography component="title" gutterBottom>
-          Rabaa Ridene
+          {user.fullname}
         </Typography>
         <Typography variant="caption" gutterBottom>
-          as Rayden <a href="./main.php?p=50104&o=c" className={classes.profileLink}>Edit profile </a>
+          as {user.username} <a href="./main.php?p=50104&o=c" className={classes.profileLink}>Edit profile </a>
         </Typography>
       </div>
       <MenuItem onClick={handleClose}>
