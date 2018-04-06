@@ -47,7 +47,7 @@ class TopHeader extends Component {
             direction="row"
           >
             <Logo />
-            <Grid item xs={12} sm={9} className={classes.objectContainer}>
+            <Grid item xs={12} sm={6} className={classes.objectContainer}>
               <PollerObject />
               <HostObject />
               <ServiceObject />

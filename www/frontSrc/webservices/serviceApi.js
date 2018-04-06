@@ -1,7 +1,7 @@
 import axios from "axios"
 import { requestServices, requestServicesSuccess, requestServicesFail } from '../Header/Actions/serviceActions'
 
-const serviceUrl = 'http://10.30.2.106/centreon/api/service.json'
+const serviceUrl = './api/internal.php?object=centreon_topcounter&action=services_status'
 
 export function getServices() {
   return (dispatch) => {

@@ -9,7 +9,7 @@ import Button from 'material-ui/Button'
 import Bookmark from 'material-ui-icons/Bookmark'
 import VolumeUp from 'material-ui-icons/VolumeUp'
 import Typography from 'material-ui/Typography'
-import Moment from 'moment'
+import Clock from '../Clock/ClockContainer'
 
 const styles = theme => ({
   profileRoot: {
@@ -25,7 +25,7 @@ const styles = theme => ({
     fontSize: 14,
   },
   headerTime: {
-    fontSize: 35,
+    fontSize: 24,
     lineHeight: '28px',
   },
   avatarButton: {
@@ -66,11 +66,12 @@ const UserProfile = ({
     open,
     user,
     initial,
+    currentDate,
     handleOpen,
     handleClose,
     anchorEl
   }) => (
-  <Grid item xs>
+  <Grid item xs={12} sm={3}>
     <div className={classes.profileRoot}>
       <IconButton
         aria-haspopup="true"
@@ -81,10 +82,7 @@ const UserProfile = ({
           {initial}
         </Avatar>
       </IconButton>
-      <div className={classes.moment}>
-        <div className={classes.headerDate}> {Moment().format('LL')} </div>
-        <div className={classes.headerTime}> {Moment().format('LT')} </div>
-      </div>
+      <Clock />
     </div>
     <Popover
       open={open}

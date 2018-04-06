@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import UserProfile from './UserProfile'
 import { getUser } from "../../webservices/userApi"
+import { getClock } from "../../webservices/clockApi"
 import 'moment-timezone'
 import Moment from 'moment'
 
@@ -12,39 +13,34 @@ class UserProfileContrainer extends Component {
     this.state = {
       anchorEl: null,
       logoutUrl: 'index.php?disconnect=1',
-      initial: ''
+      initial: '',
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props !== nextProps) {
+      console.log(nextProps)
       const initial = this.parseUsername(nextProps.user.fullname)
-      this.setDate(nextProps.user.timezone, nextProps.user.locale)
+
       this.setState({
-        initial: initial
+        initial: initial,
       })
     }
   }
 
   componentDidMount = () =>  {
     this.props.getUser()
+
   }
 
   parseUsername = username => {
-   return username.split(" ").reduce((acc, value, index) => {
+   return username.split("_").reduce((acc, value, index) => {
 
      if (index <= 1) {
        acc += value.substr(0,1).toUpperCase()
      }
      return acc
     },'')
-  }
-
-  setDate = (tz, locale) => {
-    Moment.locale(locale)
-    //console.log(Moment().tz(tz))
-    //console.log(Moment().format('LT'))
-    //Moment().format('LL')
   }
 
   handleOpen = event => {
@@ -56,7 +52,6 @@ class UserProfileContrainer extends Component {
   }
 
   render () {
-
     const { user } = this.props
     const { anchorEl, initial } = this.state
     const open = Boolean(anchorEl)
@@ -66,8 +61,8 @@ class UserProfileContrainer extends Component {
         handleClose={this.handleClose}
         handleOpen={this.handleOpen}
         initial={initial}
-        open={open}
         user={user}
+        open={open}
         anchorEl={anchorEl}
       />
     )

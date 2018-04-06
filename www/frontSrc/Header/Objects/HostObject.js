@@ -6,10 +6,12 @@ import numeral from 'numeral'
 import Avatar from 'material-ui/Avatar'
 import Popover from 'material-ui/Popover'
 import Typography from 'material-ui/Typography'
+import HostIcon from "../icons/HostIcon"
 
 const styles = theme => ({
   root: {
     position: 'relative',
+    margin: '0 12px',
     '&:before': {
       width: 1,
       height: 30,
@@ -17,7 +19,7 @@ const styles = theme => ({
       content: '""',
       position: 'absolute',
       top: 18,
-      margin: '0px -5px',
+      margin: '0px -10px',
     },
   },
   'a': {
@@ -76,12 +78,17 @@ const styles = theme => ({
     borderRadius: 20,
     backgroundColor: theme.palette.pending.main
   },
-  avatar: {
+  icon: {
     width: 34,
-    height: 34,
-    display: 'inline-flex',
-    verticalAlign: 'middle',
-    margin: '6px',
+      height: 34,
+      display: 'inline-flex',
+      verticalAlign: 'middle',
+      margin: '6px',
+      color: '#A7A9AC',
+      cursor: 'pointer',
+      '&:hover': {
+      color: '#D1D2D4',
+    }
   },
   paper: {
     padding: theme.spacing.unit,
@@ -107,10 +114,9 @@ const HostObject = (
     down, warning, unreachable, ok, pending, total, url
   }) => (
   <div className={classes.root}>
-    <Avatar
-      alt="centreon object"
-      src={'./img/icons/' + object + '.png'}
-      className={classes.avatar}
+    <HostIcon
+      viewBox="6 156 600 600"
+      className={classes.icon}
       aria-haspopup="true"
       onClick={handleOpen}
     />

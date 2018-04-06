@@ -9,6 +9,7 @@ export function requestUser () {
 }
 
 export function requestUserSuccess (res) {
+  console.log('user :', res.data)
   return {
     type: REQUEST_USER_SUCCESS,
     data: res.data,

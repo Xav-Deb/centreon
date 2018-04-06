@@ -9,10 +9,10 @@ const theme = createMuiTheme({
   palette: {
     primary: { main: '#88b917' },
     secondary: { main: '#00bfb3' },
-    error: { main: '#e00b3d' },
-    warning: { main: '#ff9a13' },
-    unreachable: { main: '#818285' },
-    unknown: { main: '#bcbdc0' },
+    error: { main: '#e00b3d', light: '#ff2c5b' },
+    warning: { main: '#ff9a13', light: '#ffb749' },
+    unreachable: { main: '#818285', light: '#a6a7a6' },
+    unknown: { main: '#bcbdc0', dark: '#95969a' },
     pending: { main: '#2AD1D4' },
   },
   font: {

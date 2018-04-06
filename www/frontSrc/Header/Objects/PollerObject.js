@@ -2,10 +2,9 @@ import React from 'react'
 import Button from 'material-ui/Button'
 import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
-import numeral from 'numeral'
-import Avatar from 'material-ui/Avatar'
 import Popover from 'material-ui/Popover'
 import Typography from 'material-ui/Typography'
+import PollerIcon from "../icons/PollerIcon"
 
 const styles = theme => ({
   root: {
@@ -48,12 +47,17 @@ const styles = theme => ({
     display: 'inline-table',
     marginRight: 6,
   },
-  avatar: {
+  icon: {
     width: 34,
     height: 34,
     display: 'inline-flex',
     verticalAlign: 'middle',
     margin: '6px',
+    color: '#A7A9AC',
+    cursor: 'pointer',
+    '&:hover': {
+      color: '#D1D2D4',
+    }
   },
   paper: {
     padding: theme.spacing.unit,
@@ -78,12 +82,12 @@ const PollerObject = (
   {classes, object, anchorEl, open, handleClose, handleOpen,
   }) => (
   <div className={classes.root}>
-    <Avatar
-      alt="centreon object"
-      src={'./img/icons/' + object + '.png'}
-      className={classes.avatar}
+    <PollerIcon
+      alt="poller icon"
       aria-haspopup="true"
       onClick={handleOpen}
+      viewBox="6 156 600 600"
+      className={classes.icon}
     />
     <Popover
       open={open}

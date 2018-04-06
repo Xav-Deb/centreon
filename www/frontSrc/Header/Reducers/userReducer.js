@@ -10,6 +10,7 @@ export default function userReducer (
   },
   action
 ) {
+
   switch (action.type) {
     case REQUEST_USER:
       return {

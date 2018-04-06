@@ -3,14 +3,14 @@ import Button from 'material-ui/Button'
 import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
 import numeral from 'numeral'
-import Avatar from 'material-ui/Avatar'
 import Popover from 'material-ui/Popover'
 import Typography from 'material-ui/Typography'
+import ServiceIcon from "../icons/ServiceIcon"
 
 const styles = theme => ({
   root: {
-    position: 'relative',
     fontFamily: theme.font.openSans,
+    margin: '0 12px',
     '&:before': {
       width: 1,
       height: 30,
@@ -18,7 +18,7 @@ const styles = theme => ({
       content: '""',
       position: 'absolute',
       top: 18,
-      margin: '0px -5px',
+      margin: '0px -10px',
     },
   },
   status: {
@@ -35,6 +35,9 @@ const styles = theme => ({
     width: 46,
     height: 46,
     backgroundColor: theme.palette.error.main,
+    '&:hover': {
+      backgroundColor: theme.palette.error.light,
+    },
     '& span': {
       fontSize: 16,
       color: '#fff',
@@ -63,12 +66,17 @@ const styles = theme => ({
     },
     backgroundColor: theme.palette.unknown.main,
   },
-  avatar: {
+  icon: {
     width: 34,
     height: 34,
     display: 'inline-flex',
     verticalAlign: 'middle',
     margin: '6px',
+    color: '#A7A9AC',
+    cursor: 'pointer',
+    '&:hover': {
+      color: '#D1D2D4',
+    }
   },
   paper: {
     padding: theme.spacing.unit,
@@ -94,10 +102,9 @@ const ServiceObject = ({
     critical, warning, unknown, ok, pending, total, url
 }) => (
   <div className={classes.root}>
-      <Avatar
-        alt="centreon object"
-        src={'./img/icons/' + object + '.png'}
-        className={classes.avatar}
+      <ServiceIcon
+        viewBox="284 -284 600 600"
+        className={classes.icon}
         aria-haspopup="true"
         onClick={handleOpen}
       />
