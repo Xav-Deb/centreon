@@ -66,6 +66,13 @@ const styles = theme => ({
     },
     backgroundColor: theme.palette.unknown.main,
   },
+  chip: {
+    height: '8px',
+    width: '8px',
+    borderRadius: 20,
+    display: 'inline-table',
+    marginRight: 6,
+  },
   icon: {
     width: 34,
     height: 34,
