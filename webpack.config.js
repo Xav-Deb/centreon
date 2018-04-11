@@ -7,6 +7,11 @@ const MinifyPlugin = require("babel-minify-webpack-plugin")
 
 module.exports = {
   entry: './www/index.js',
+  output: {
+    filename: 'bundle.js',
+    publicPath: './include/core/menu/templates/',
+    path: path.resolve(__dirname, './www/include/core/menu/templates')
+  },
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
@@ -70,9 +75,4 @@ module.exports = {
       },
     ]
   },
-  output: {
-    filename: 'bundle.js',
-    publicPath: './include/core/menu/templates/',
-    path: path.resolve(__dirname, './www/include/core/menu/templates')
-  }
 };
