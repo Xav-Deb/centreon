@@ -24,8 +24,8 @@ const styles = theme => ({
     fontSize: 14,
   },
   headerTime: {
-    fontSize: 35,
-    lineHeight: '28px',
+    fontSize: 24,
+    lineHeight: '22px',
   },
 })
 
