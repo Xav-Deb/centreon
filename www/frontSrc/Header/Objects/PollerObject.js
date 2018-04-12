@@ -53,11 +53,7 @@ const styles = theme => ({
     display: 'inline-flex',
     verticalAlign: 'middle',
     margin: '6px',
-    color: '#A7A9AC',
     cursor: 'pointer',
-    '&:hover': {
-      color: '#D1D2D4',
-    }
   },
   paper: {
     padding: theme.spacing.unit,
@@ -76,10 +72,33 @@ const styles = theme => ({
     float: 'right',
     marginLeft: 34,
   },
+  errorNotif: {
+    backgroundColor: theme.palette.error.lighter,
+    color: theme.palette.error.main,
+    padding: 10,
+    borderRadius: 3,
+  },
+  warningNotif: {
+    ackgroundColor: theme.palette.warning.light,
+    color: theme.palette.warning.main,
+    padding: 10,
+    borderRadius: 3,
+    textAlign: 'center',
+  },
+  primaryButton: {
+    textTransform: 'initial',
+    border: '1px solid ' + theme.palette.primary.dark,
+    color: theme.palette.primary.main,
+    '&:hover': {
+      color: '#FFF',
+      backgroundColor: theme.palette.primary.main,
+    }
+  },
 })
 
 const PollerObject = (
-  {classes, object, anchorEl, open, handleClose, handleOpen,
+  {classes, iconColor, message, total, anchorEl, open, handleClose, handleOpen, className,
+    database, latency, stability
   }) => (
   <div className={classes.root}>
     <PollerIcon
@@ -88,6 +107,7 @@ const PollerObject = (
       onClick={handleOpen}
       viewBox="6 156 600 600"
       className={classes.icon}
+      nativeColor={iconColor}
     />
     <Popover
       open={open}
@@ -106,27 +126,51 @@ const PollerObject = (
     >
       <div className={classes.objectDetails}>
         <Typography variant="caption" gutterBottom>
-          <a href="" title="all pollers list">
             All pollers
-          </a>
-          <span className={classes.total}>345</span>
+          <span className={classes.total}>{total}</span>
         </Typography>
-      </div>
-      <div className={classes.objectDetails}>
-
       </div>
       <div className={classes.objectDetails}>
         <Typography variant="caption" gutterBottom>
-          12 Configurations has been changed
-          <a href="">
-            <Button>
-              Configure pollers
-            </Button>
-          </a>
+          <span className={classes.chip} style={{backgroundColor: '#e00b3d'}}></span>
+          {stability.critical.message}
+          <span className={classes.total}>{stability.critical.total}</span>
+        </Typography>
+        <Typography variant="caption" gutterBottom>
+          <span className={classes.chip} style={{backgroundColor: '#FF9A13'}}></span>
+          {stability.warning.message}
+          <span className={classes.total}>{stability.warning.total}</span>
         </Typography>
       </div>
-      }
-
+      <div className={classes.objectDetails}>
+        <Typography variant="caption" gutterBottom>
+          <span className={classes.chip} style={{backgroundColor: '#e00b3d'}}></span>
+          {latency.critical.message}
+          <span className={classes.total}>{latency.critical.total}</span>
+        </Typography>
+        <Typography variant="caption" gutterBottom>
+          <span className={classes.chip} style={{backgroundColor: '#FF9A13'}}></span>
+          {latency.warning.message}
+          <span className={classes.total}>{latency.warning.total}</span>
+        </Typography>
+      </div>
+      <div className={classes.objectDetails}>
+        <Typography variant="caption" gutterBottom>
+          <span className={classes.chip} style={{backgroundColor: '#e00b3d'}}></span>
+          {database.critical.message}
+          <span className={classes.total}>{database.critical.total}</span>
+        </Typography>
+        <Typography variant="caption" gutterBottom>
+          <span className={classes.chip} style={{backgroundColor: '#FF9A13'}}></span>
+          {database.warning.message}
+          <span className={classes.total}>{database.warning.total}</span>
+        </Typography>
+      </div>
+      <div className={classes.objectDetails}>
+        <Button className={classes.primaryButton} href="./main.php?p=609">
+          Configure pollers
+        </Button>
+      </div>
     </Popover>
   </div>
 )

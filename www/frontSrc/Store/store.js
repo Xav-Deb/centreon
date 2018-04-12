@@ -5,6 +5,7 @@ import userReducer from '../Header/Reducers/userReducer'
 import clockReducer from '../Header/Reducers/clockReducer'
 import serviceReducer from '../Header/Reducers/serviceReducer'
 import hostReducer from '../Header/Reducers/hostReducer'
+import pollerReducer from '../Header/Reducers/pollerReducer'
 
 const logger = createLogger()
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   clock: clockReducer,
   service: serviceReducer,
   host: hostReducer,
+  poller: pollerReducer,
 })
 
 export const store = createStore(

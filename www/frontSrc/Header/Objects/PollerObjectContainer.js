@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { CircularProgress } from 'material-ui/Progress'
 import PollerObject from './PollerObject'
 import {connect} from "react-redux"
-//import {getPollers} from "../../webservices/pollerApi"
+import {getPollers} from "../../webservices/pollerApi"
 
 class PollerObjectContainer extends Component {
 
@@ -11,8 +12,9 @@ class PollerObjectContainer extends Component {
       anchorEl: null,
     }
   }
+
   componentDidMount = () =>  {
-    //this.props.getPollers()
+    this.props.getPollers()
   }
 
   handleOpen = event => {
@@ -23,25 +25,54 @@ class PollerObjectContainer extends Component {
     this.setState({ anchorEl: null })
   }
 
+  setPollerState = (database, latency, stability) => {
+
+    const pollerState = {
+      color: '#88B917',
+      className: '',
+    }
+
+    if (database.critical > 0 || latency.critical > 0 || stability.critical > 0) {
+      pollerState.color = '#E00B3D'
+      pollerState.className = 'errorNotif'
+    } else if (database.warning > 0 || latency.warning > 0 || stability.warning > 0) {
+      pollerState.color = '#FF9A13'
+      pollerState.className = 'warningNotif'
+    }
+
+    return pollerState
+  }
 
   render = () => {
-    //const {host} = this.props
     const { anchorEl } = this.state
     const open = !!anchorEl
-    return (
-      <PollerObject
-        handleClose={this.handleClose}
-        handleOpen={this.handleOpen}
-        open={open}
-        anchorEl={anchorEl}
-        object='poller'/>
-    )
+    const { database, latency, stability, total, dataFetched } = this.props.poller
+
+    if (dataFetched) {
+      const {color, className } = this.setPollerState(stability, database, latency)
+      return (
+        <PollerObject
+          handleClose={this.handleClose}
+          handleOpen={this.handleOpen}
+          open={open}
+          anchorEl={anchorEl}
+          iconColor={color}
+          className={className}
+          database={database}
+          latency={latency}
+          stability={stability}
+          total={total}
+        />
+      )
+    } else {
+      return <CircularProgress size={30} style={{ color: '#D1D2D4' }}/>
+    }
   }
 }
 
-/*const mapStateToProps = (store) => {
+const mapStateToProps = (store) => {
   return {
-    host: store.host,
+    poller: store.poller,
   }
 }
 
@@ -53,6 +84,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HostObjectContainer)*/
-
-export default PollerObjectContainer
+export default connect(mapStateToProps, mapDispatchToProps)(PollerObjectContainer)

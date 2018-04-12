@@ -1,32 +1,55 @@
 import {
-  REQUEST_HOSTS,
-  REQUEST_HOSTS_SUCCESS,
-  REQUEST_HOSTS_FAIL,
-} from '../Actions/hostActions'
+  REQUEST_POLLERS,
+  REQUEST_POLLERS_SUCCESS,
+  REQUEST_POLLERS_FAIL,
+} from '../Actions/pollerActions'
 
-export default function hostReducer (state = {},action) {
+export default function pollerReducer (state = {},action) {
   switch (action.type) {
-    case REQUEST_HOSTS:
-      return {
-        ...state
-      }
-    case REQUEST_HOSTS_SUCCESS:
+    case REQUEST_POLLERS:
       return {
         ...state,
-          ...action.data,
-          ['latency']: {
-            ...action.data['latency'],
-            classe: 'NotificationWarning',
+        dataFetched: false,
+      }
+    case REQUEST_POLLERS_SUCCESS:
+      return {
+        ...state,
+        ...action.data,
+        database: {
+          ...action.data.database,
+          critical: {
+            total: action.data.database.critical,
+            message: 'All database poller updates are not active'
           },
-          ['stability']: {
-            ...action.data['stability'],
-            classe: 'NotificationError',
+          ['warning']: {
+            total: action.data.database.warning,
+            message: 'Some database poller updates are not active'
           },
-          ['database']: {
-            ...action.data['database'],
-            classe: 'NotificationWarning',
+        },
+        stability: {
+          ...action.data.stability,
+          critical: {
+            total: action.data.stability.critical,
+            message: 'Pollers are not running'
           },
-        }
+          warning: {
+            total: action.data.stability.warning,
+            message: 'Some Pollers are not running'
+          },
+        },
+        latency: {
+          ...action.data.latency,
+          critical: {
+            total: action.data.latency.critical,
+            message: 'Latency is strongly detected'
+          },
+          warning: {
+            total: action.data.latency.warning,
+            message: 'Latency is detected'
+          },
+        },
+        dataFetched: true,
+      }
     default:
       return state
   }
