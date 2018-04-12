@@ -7,9 +7,9 @@ import TopHeader from './TopHeader'
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: '#88b917' },
+    primary: { main: '#88b917', dark: '#597F00' },
     secondary: { main: '#00bfb3' },
-    error: { main: '#e00b3d', light: '#ff2c5b' },
+    error: { main: '#e00b3d', light: '#ff2c5b', lighter: '#FF8C88' },
     warning: { main: '#ff9a13', light: '#ffb749' },
     unreachable: { main: '#818285', light: '#a6a7a6' },
     unknown: { main: '#bcbdc0', dark: '#95969a' },

@@ -20,7 +20,7 @@ const styles = theme => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
-    backgroundColor: '#222e3c',
+    backgroundColor: '#E7E7E8',
   },
   objectContainer: {
     display: 'flex',
